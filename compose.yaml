@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: db
+    image: "postgres:14.0-alpine"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: realworld-rust-axum
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
